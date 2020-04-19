@@ -5,12 +5,22 @@
  */
 package com.controller;
 
+import com.beans.customer;
+import com.daos.CustomerDao;
+import com.utility.FileUploader;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.Base64;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
 /**
  *
@@ -18,68 +28,157 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class CustomerController extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet CustomerController</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet CustomerController at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
-    }
-
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+    
+   
+   
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+       PrintWriter out=response.getWriter();
+       response.setContentType("text/html");
+       String op=request.getParameter("op");
+         if (op != null && op.equals("varifyUserid")) {
+            
+            String userid = request.getParameter("userid");
+            if (userid == null || userid.equals("")) {
+                out.print("<b> Plese fillout the userid</b>");
+                return;
+            }
+            
+            Connection con = null;
+            PreparedStatement smt = null;
+            try {
+                Class.forName("com.mysql.jdbc.Driver");
+                con = DriverManager.getConnection("jdbc:mysql://localhost:3306/wedding", "root", "123456");
+                String sql = "select * from customer where user_id=?";
+                smt = con.prepareStatement(sql);
+                smt.setString(1, userid);
+                //execute the command : executeUpdate()-for insert,update and delete or executeQuery()-for select
+                ResultSet rs = smt.executeQuery();
+                if (rs.next()) {
+                    out.println("<font color='red' size='4' face='corbel'>Sorry! this userid is not available</font>");
+                } else {
+                    out.println("<font color='blue' size='4' face='corbel'> Congrats! this userid is available!</font>");
+                }
+                smt.close();
+                con.close();
+
+            } catch (Exception e) {
+                System.out.println("Error : + " + e.getMessage());
+
+            }
+        }
+         if (op != null && op.equals("varifyEmailid")) {
+            
+            String email = request.getParameter("email");
+            if (email == null || email.equals("")) {
+                out.print("<b> Plese fillout the email</b>");
+                return;
+            }
+            
+            Connection con = null;
+            PreparedStatement smt = null;
+            try {
+                Class.forName("com.mysql.jdbc.Driver");
+                con = DriverManager.getConnection("jdbc:mysql://localhost:3306/wedding", "root", "123456");
+                String sql = "select * from customer where email=?";
+                smt = con.prepareStatement(sql);
+                smt.setString(1, email);
+                //execute the command : executeUpdate()-for insert,update and delete or executeQuery()-for select
+                ResultSet rs = smt.executeQuery();
+                if (rs.next()) {
+                    out.println("<font color='red' size='4' face='corbel'>Sorry! this userid is not available</font>");
+                } else {
+                    out.println("<font color='blue' size='4' face='corbel'> Congrats! this userid is available!</font>");
+                }
+                smt.close();
+                con.close();
+
+            } catch (Exception e) {
+                System.out.println("Error : + " + e.getMessage());
+
+            }
+        }
     }
 
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+    
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+      PrintWriter out=response.getWriter();
+      response.setContentType("text/html");
+      String op=request.getParameter("op");
+      if(op!=null && op.equalsIgnoreCase("add"))
+      {
+          
+          boolean isMultipart=ServletFileUpload.isMultipartContent(request);
+          String encodedPassword="";
+          String imagePath="";
+          HttpSession session=request.getSession();
+      
+          customer customer1=(customer)session.getAttribute("customer");
+          out.println(customer1.getCity());
+          if(isMultipart)
+              imagePath=FileUploader.getUploadedPath(getServletContext(), "media/customer", request);
+          customer1.setPhoto(imagePath);
+          encodedPassword=Base64.getEncoder().encodeToString(customer1.getPassword().getBytes("UTF-8"));
+          customer1.setPassword(encodedPassword);
+          out.println(encodedPassword);
+          System.out.println("Password is"+encodedPassword);
+          CustomerDao cd=new CustomerDao();
+         
+          if(cd.add(customer1))
+          {
+              session.removeAttribute("customer");
+              out.println("Customer Added");
+           //  response.sendRedirect("Admin/viewAllReporters.jsp");
+          }
+      }
+      if(op!=null && op.equalsIgnoreCase("update"))
+      {
+          
+          boolean isMultipart=ServletFileUpload.isMultipartContent(request);
+          String encodedPassword="";
+          String imagePath="";
+          HttpSession session=request.getSession();
+          customer customer1=(customer)session.getAttribute("customer");
+          if(isMultipart)
+              imagePath=FileUploader.getUploadedPath(getServletContext(), "media/customer", request);
+          
+          if(imagePath=="")
+          {
+              encodedPassword = Base64.getEncoder().encodeToString(customer1.getPassword().getBytes("UTF-8"));
+                 customer1.setPassword(encodedPassword);
+                 CustomerDao rd=new CustomerDao();
+                 if(rd.update(customer1))
+                     response.sendRedirect("customer/viewcustomer.jsp");
+          }
+          else
+          {
+              customer1.setPhoto(imagePath);
+              encodedPassword = Base64.getEncoder().encodeToString(customer1.getPassword().getBytes("UTF-8"));
+            customer1.setPassword(encodedPassword);
+            CustomerDao rd = new CustomerDao();
+            if (rd.update(customer1)) {
+                
+                response.sendRedirect("Reporter/dashboard.jsp");
+               // out.println("Reporter Added !!");
+            }
+          }
+//          reporter.setPhoto(imagePath);
+//          encodedPassword=Base64.getEncoder().encodeToString(reporter.getPassword().getBytes("UTF-8"));
+//          reporter.setPassword(encodedPassword);
+//          ReporterDao rd=new ReporterDao();
+//         
+//          if(rd.add(reporter))
+//          {
+//              session.removeAttribute("reporter");
+//              out.println("Reporter Added");
+//             response.sendRedirect("Admin/viewAllReporters.jsp");
+//          }
+      }
     }
 
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
-
+   
+   
 }

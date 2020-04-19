@@ -270,10 +270,14 @@ public final class login_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("        <script src=\"assets/vendor/jquery/jquery.min.js\"></script>\n");
       out.write("        <script src=\"assets/vendor/bootstrap/js/bootstrap.bundle.min.js\"></script>\n");
       out.write("        \n");
-      out.write("        ");
+      out.write("        \n");
+      out.write("    </center>\n");
+      out.write("                                               \n");
+      out.write("                                                \n");
+      out.write("        <br/><br/><br/><br/><br/><br/><br/><br/>                                        \n");
+      out.write("                                                ");
       org.apache.jasper.runtime.JspRuntimeLibrary.include(request, response, "footer.jsp", out, false);
       out.write("\n");
-      out.write("    </center>\n");
       out.write("</body>\n");
       out.write("\n");
  

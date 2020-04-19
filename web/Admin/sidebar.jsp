@@ -45,14 +45,14 @@
        <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseThree" aria-expanded="true" aria-controls="collapseTwo">
           <i class="fas fa-fw fa-cog"></i>
-          <span>Manage Vendors </span>
+          <span>Manage Customers </span>
         </a>
         <div id="collapseThree" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Custom Actions...</h6>
-            <a class="collapse-item" href="addReporter.jsp">Add Vendors</a>
-            <a class="collapse-item" href="viewAllReporters.jsp">View All Vendors</a>
-            <a class="collapse-item" href="viewPendingReporters.jsp">View Pending Vendors</a>
+          
+            <a class="collapse-item" href="viewallCustomers.jsp">View All Customers</a>
+            <a class="collapse-item" href="viewPendingcustomer.jsp">View Pending Customers</a>
          </div>
         </div>
       </li>

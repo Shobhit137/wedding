@@ -7,8 +7,8 @@ package com.beans;
 
 
 public class customer {
-    private int id,pincode,vendor_id;
-    private String name,contact,state,locality,city,user_id;
+    private int id;
+    private String name,contact,city,user_id,email,photo,dob,gender,password;
 
     public customer() {
     }
@@ -21,22 +21,9 @@ public class customer {
         this.id = id;
     }
 
-    public int getPincode() {
-        return pincode;
-    }
+ 
 
-    public void setPincode(int pincode) {
-        this.pincode = pincode;
-    }
-
-    public int getVendor_id() {
-        return vendor_id;
-    }
-
-    public void setVendor_id(int vendor_id) {
-        this.vendor_id = vendor_id;
-    }
-
+   
     public String getName() {
         return name;
     }
@@ -53,21 +40,50 @@ public class customer {
         this.contact = contact;
     }
 
-    public String getState() {
-        return state;
+    public String getEmail() {
+        return email;
     }
 
-    public void setState(String state) {
-        this.state = state;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public String getLocality() {
-        return locality;
+    public String getPhoto() {
+        return photo;
     }
 
-    public void setLocality(String locality) {
-        this.locality = locality;
+    public void setPhoto(String photo) {
+        this.photo = photo;
     }
+
+    public String getDob() {
+        return dob;
+    }
+
+    public void setDob(String dob) {
+        this.dob = dob;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+  
+    
+
+   
 
     public String getCity() {
         return city;
