@@ -22,16 +22,25 @@ public class VendorDao {
         try{
             String sql = "Select * from vendor1 where userid=? and password=?";
             PreparedStatement smt = con.prepareStatement(sql);
+            String encodedPassword = Base64.getEncoder().encodeToString(password.getBytes("UTF-8"));
             smt.setString(1, userid);
-            smt.setString(2,password);
+            smt.setString(2,encodedPassword);
+            System.out.println("Connection is here");
             ResultSet rs = smt.executeQuery();
             if(rs.next()){
                 vendor = new Vendor();
-                vendor.setUserid(rs.getString("name"));
-                vendor.setPassword(rs.getString("pass"));
-                //admin.setUserid(rs.getString("userid"));
-                //admin.setPassword(rs.getString("password"));
-                //admin.setId(rs.getInt("id"));
+                vendor.setId(rs.getInt("id"));
+                vendor.setName(rs.getString("name"));
+                vendor.setDob(rs.getString("dob"));
+                vendor.setGender(rs.getString("gender"));
+                vendor.setUserid(rs.getString("userid"));
+                vendor.setPassword(rs.getString("password"));
+                vendor.setPhoto(rs.getString("photo"));
+                vendor.setContact(rs.getString("contact"));
+                vendor.setEmail(rs.getString("email"));
+                vendor.setProfession(rs.getString("profession"));
+                vendor.setCity(rs.getString("city"));
+                vendor.setPincode(rs.getInt("pincode"));
             }
            
             smt.close();
@@ -40,7 +49,7 @@ public class VendorDao {
             System.out.println("DBError :"+e.getMessage());
         }
        }
-        
+        System.out.println("End is here");
         return vendor;
         
     }
@@ -278,7 +287,7 @@ public class VendorDao {
         try{
             String sql = "update vendor1 set name=?,gender=?,dob=?,email=?,photo=?,contact=?,city=?,pincode=?,profession=? where id=?";
             PreparedStatement smt = con.prepareStatement(sql);
-            //System.out.println(reporter.getName());
+           
             smt.setString(1, vendor.getName());
             smt.setString(4, vendor.getEmail());
             smt.setString(2, vendor.getGender());
@@ -288,7 +297,7 @@ public class VendorDao {
            smt.setString(9,vendor.getProfession());
             smt.setString(5, vendor.getPhoto());
             smt.setString(6, vendor.getContact());
-            smt.setInt(8, vendor.getId());
+            smt.setInt(10, vendor.getId());
             if(smt.executeUpdate()>0)
                 status=true;
             smt.close();

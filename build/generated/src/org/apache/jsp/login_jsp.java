@@ -76,10 +76,10 @@ public final class login_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("        <style>\n");
       out.write("\n");
       out.write("            html,body{\n");
-      out.write("                background-image: url('assets/Image/544750.png');\n");
+      out.write("                background-image: url('assets1/Images/544750.jpg');\n");
       out.write("                background-size: cover;\n");
       out.write("                background-repeat: no-repeat;\n");
-      out.write("                height: 100%;\n");
+      out.write("                height: 10%;\n");
       out.write("              \n");
       out.write("                font-family: 'Numans', sans-serif;\n");
       out.write("            }\n");
@@ -315,10 +315,13 @@ public final class login_jsp extends org.apache.jasper.runtime.HttpJspBase
         }
       if (role.equals("vendorLogin")) {
             VendorDao vd = new VendorDao();
-            Vendor vendor1 = vd.validateVendor(userid, password);
-            if(vendor1!=null) {
-                session.setAttribute("vendor", vendor1);
+            Vendor vendor = vd.validateVendor(userid, password);
+            System.out.println("NAme is"+vendor.getName());
+            if(vendor!=null) {
+                System.out.println("Connection is heree");
+                session.setAttribute("vendor", vendor);
                 response.sendRedirect("Vendor/dashboard.jsp");
+                System.out.println("It has redirected");
             }
             else {
                  response.sendRedirect("login.jsp?msg=Invalid Userid or Password");
@@ -327,6 +330,7 @@ public final class login_jsp extends org.apache.jasper.runtime.HttpJspBase
       if (role.equals("customerLogin")) {
             CustomerDao cd = new CustomerDao();
             customer customer = cd.validateCustomer(userid, password);
+            System.out.println("Name is"+customer.getName());
             if(customer!=null) {
                 session.setAttribute("customer", customer);
                 response.sendRedirect("Customer1/dashboard.jsp");

@@ -28,16 +28,24 @@ public class CustomerDao {
         try{
             String sql = "Select * from customer where user_id=? and password=?";
             PreparedStatement smt = con.prepareStatement(sql);
+            String encodedPassword = Base64.getEncoder().encodeToString(password.getBytes("UTF-8"));
             smt.setString(1, userid);
-            smt.setString(2,password);
+            smt.setString(2,encodedPassword);
             ResultSet rs = smt.executeQuery();
             if(rs.next()){
                 customer1 = new customer();
-                customer1.setUser_id(rs.getString("name"));
+               
+                customer1.setId(rs.getInt("id"));
+                customer1.setName(rs.getString("name"));
+                customer1.setDob(rs.getString("dob"));
+                customer1.setGender(rs.getString("gender"));
+                customer1.setUser_id(rs.getString("user_id"));
                 customer1.setPassword(rs.getString("password"));
-                //admin.setUserid(rs.getString("userid"));
-                //admin.setPassword(rs.getString("password"));
-                //admin.setId(rs.getInt("id"));
+                customer1.setPhoto(rs.getString("photo"));
+                customer1.setContact(rs.getString("contact"));
+                customer1.setEmail(rs.getString("email"));
+                
+                customer1.setCity(rs.getString("city"));
             }
            
             smt.close();
@@ -46,7 +54,7 @@ public class CustomerDao {
             System.out.println("DBError :"+e.getMessage());
         }
        }
-        
+        System.out.println("Name is"+customer1.getName());
         return customer1;
         
     }

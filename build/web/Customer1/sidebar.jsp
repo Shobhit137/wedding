@@ -4,7 +4,7 @@
               <li class="nav-item">
                     <a class="nav-link active" href="#">
                         <span style="text-align: center">
-                      <img src="../media/customer/Brothers.JPG" style="border-radius: 50%; width:64px; height: 64px; border-style: double;border-color:blue;"/><br/>
+                      <img src="../${customer.photo}" style="border-radius: 50%; width:64px; height: 64px; border-style: double;border-color:blue;"/><br/>
                     </span>
                   
                 </a>

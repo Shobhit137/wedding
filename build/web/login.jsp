@@ -31,10 +31,10 @@
         <style>
 
             html,body{
-                background-image: url('assets/Image/544750.png');
+                background-image: url('assets1/Images/544750.jpg');
                 background-size: cover;
                 background-repeat: no-repeat;
-                height: 100%;
+                height: 10%;
               
                 font-family: 'Numans', sans-serif;
             }
@@ -256,10 +256,13 @@
         }
       if (role.equals("vendorLogin")) {
             VendorDao vd = new VendorDao();
-            Vendor vendor1 = vd.validateVendor(userid, password);
-            if(vendor1!=null) {
-                session.setAttribute("vendor", vendor1);
+            Vendor vendor = vd.validateVendor(userid, password);
+            System.out.println("NAme is"+vendor.getName());
+            if(vendor!=null) {
+                System.out.println("Connection is heree");
+                session.setAttribute("vendor", vendor);
                 response.sendRedirect("Vendor/dashboard.jsp");
+                System.out.println("It has redirected");
             }
             else {
                  response.sendRedirect("login.jsp?msg=Invalid Userid or Password");
@@ -268,6 +271,7 @@
       if (role.equals("customerLogin")) {
             CustomerDao cd = new CustomerDao();
             customer customer = cd.validateCustomer(userid, password);
+            System.out.println("Name is"+customer.getName());
             if(customer!=null) {
                 session.setAttribute("customer", customer);
                 response.sendRedirect("Customer1/dashboard.jsp");

@@ -107,34 +107,68 @@ public class VendorController extends HttpServlet {
       String op=request.getParameter("op");
       if(op!=null && op.equalsIgnoreCase("add"))
       {
-          System.out.println("Control is here");
+         
           boolean isMultipart=ServletFileUpload.isMultipartContent(request);
           String encodedPassword="";
           String imagePath="";
           HttpSession session=request.getSession();
           Vendor vendor=(Vendor)session.getAttribute("vendor");
           out.println(vendor.getCity());
-          System.out.println("Control is here");
+          
           if(isMultipart)
               imagePath=FileUploader.getUploadedPath(getServletContext(), "media/vendor", request);
           vendor.setPhoto(imagePath);
-          System.out.println("Control is here");
+         
           encodedPassword=Base64.getEncoder().encodeToString(vendor.getPassword().getBytes("UTF-8"));
           vendor.setPassword(encodedPassword);
           out.println(encodedPassword);
-          System.out.println("Password is"+encodedPassword);
+          
           VendorDao rd=new VendorDao();
          
           if(rd.add(vendor))
           {
               session.removeAttribute("vendor");
-              out.println("Vendor Added");
-           //  response.sendRedirect("Admin/viewAllReporters.jsp");
+              
+             response.sendRedirect("../login.jsp");
           }
       }
+      if(op!=null && op.equalsIgnoreCase("update"))
+      {
+          
+          boolean isMultipart=ServletFileUpload.isMultipartContent(request);
+          String encodedPassword="";
+          String imagePath="";
+          HttpSession session=request.getSession();
+          Vendor vendor=(Vendor)session.getAttribute("vendor");
+          if(isMultipart)
+              imagePath=FileUploader.getUploadedPath(getServletContext(), "media/vendor", request);
+          
+          if(imagePath=="")
+          {
+              encodedPassword = Base64.getEncoder().encodeToString(vendor.getPassword().getBytes("UTF-8"));
+                 vendor.setPassword(encodedPassword);
+                 VendorDao rd=new VendorDao();
+                 if(rd.update(vendor))
+                     response.sendRedirect("vendor/welcome.jsp");
+          }
+          else
+          {
+              vendor.setPhoto(imagePath);
+              encodedPassword = Base64.getEncoder().encodeToString(vendor.getPassword().getBytes("UTF-8"));
+            vendor.setPassword(encodedPassword);
+            VendorDao rd = new VendorDao();
+            if (rd.update(vendor)) {
+                
+                response.sendRedirect("vendor/welcome1.jsp");
+              
+            }
+          }
+
+      }
+    }
     }
 
     
     
 
-}
+
