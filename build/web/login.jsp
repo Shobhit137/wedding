@@ -4,6 +4,11 @@
     Author     : shobh
 --%>
 
+<%@page import="com.beans.customer"%>
+<%@page import="com.daos.CustomerDao"%>
+<%@page import="com.beans.Vendor"%>
+<%@page import="com.daos.VendorDao"%>
+
 <%@page import="com.beans.Admin"%>
 <%@page import="com.daos.AdminDao"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -175,7 +180,8 @@
                                             </div>
                                             <div style="color:white; text-align: justify">
                                                 <input type="radio" name="role" value="adminLogin" />Login as Admin &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;
-                                                <input type="radio" name="role" value="reporterLogin" />Login as Reporter
+                                                <br/><input type="radio" name="role" value="customerLogin" />Login as Customer
+                                                <br/><input type="radio" name="role" value="vendorLogin" />Login as Vendor
                                             </div>
 
                                             <!--					<div class="row align-items-center remember"><br/>
@@ -243,6 +249,28 @@
             if(admin!=null) {
                 session.setAttribute("admin", admin);
                 response.sendRedirect("Admin/dashboard.jsp");
+            }
+            else {
+                 response.sendRedirect("login.jsp?msg=Invalid Userid or Password");
+            }
+        }
+      if (role.equals("vendorLogin")) {
+            VendorDao vd = new VendorDao();
+            Vendor vendor1 = vd.validateVendor(userid, password);
+            if(vendor1!=null) {
+                session.setAttribute("vendor", vendor1);
+                response.sendRedirect("Vendor/dashboard.jsp");
+            }
+            else {
+                 response.sendRedirect("login.jsp?msg=Invalid Userid or Password");
+            }
+        }
+      if (role.equals("customerLogin")) {
+            CustomerDao cd = new CustomerDao();
+            customer customer = cd.validateCustomer(userid, password);
+            if(customer!=null) {
+                session.setAttribute("customer", customer);
+                response.sendRedirect("Customer1/dashboard.jsp");
             }
             else {
                  response.sendRedirect("login.jsp?msg=Invalid Userid or Password");

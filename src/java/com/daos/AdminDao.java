@@ -31,7 +31,7 @@ public class AdminDao {
             if(rs.next()){
                 admin = new Admin();
                 admin.setName(rs.getString("name"));
-                admin.setPhoto(rs.getString("photo"));
+                admin.setImage(rs.getString("image"));
                 //admin.setUserid(rs.getString("userid"));
                 //admin.setPassword(rs.getString("password"));
                 //admin.setId(rs.getInt("id"));

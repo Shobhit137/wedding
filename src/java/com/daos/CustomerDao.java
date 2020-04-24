@@ -19,7 +19,7 @@ import java.util.Base64;
  * @author shobh
  */
 public class CustomerDao {
-     public customer validateVendor(String userid,String password){
+     public customer validateCustomer(String userid,String password){
        customer customer1=null;
         ConnectionPool cp = ConnectionPool.getInstance();
          cp.initialize();
@@ -34,7 +34,7 @@ public class CustomerDao {
             if(rs.next()){
                 customer1 = new customer();
                 customer1.setUser_id(rs.getString("name"));
-                customer1.setPassword(rs.getString("pass"));
+                customer1.setPassword(rs.getString("password"));
                 //admin.setUserid(rs.getString("userid"));
                 //admin.setPassword(rs.getString("password"));
                 //admin.setId(rs.getInt("id"));
@@ -129,7 +129,7 @@ public class CustomerDao {
                 customer1.setDob(rs.getString("dob"));
                 customer1.setGender(rs.getString("gender"));
                 customer1.setCity(rs.getString("city"));
-                customer1.setUser_id(rs.getString("userid"));
+                customer1.setUser_id(rs.getString("user_id"));
                 customer1.setPassword(rs.getString("password"));
                 customer1.setPhoto(rs.getString("photo"));
                 customer1.setContact(rs.getString("contact"));

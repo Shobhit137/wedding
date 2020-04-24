@@ -130,8 +130,8 @@ public class CustomerController extends HttpServlet {
           if(cd.add(customer1))
           {
               session.removeAttribute("customer");
-              out.println("Customer Added");
-           //  response.sendRedirect("Admin/viewAllReporters.jsp");
+              //out.println("Customer Added");
+             response.sendRedirect("../login.jsp");
           }
       }
       if(op!=null && op.equalsIgnoreCase("update"))
@@ -151,7 +151,7 @@ public class CustomerController extends HttpServlet {
                  customer1.setPassword(encodedPassword);
                  CustomerDao rd=new CustomerDao();
                  if(rd.update(customer1))
-                     response.sendRedirect("customer/viewcustomer.jsp");
+                     response.sendRedirect("customer/viewDetails.jsp");
           }
           else
           {
@@ -161,7 +161,7 @@ public class CustomerController extends HttpServlet {
             CustomerDao rd = new CustomerDao();
             if (rd.update(customer1)) {
                 
-                response.sendRedirect("Reporter/dashboard.jsp");
+                response.sendRedirect("Customer/dashboard.jsp");
                // out.println("Reporter Added !!");
             }
           }

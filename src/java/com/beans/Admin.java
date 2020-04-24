@@ -8,7 +8,7 @@ package com.beans;
 
 public class Admin {
     private int id;
-    private String name,userid,password,photo;
+    private String name,userid,password,image;
 
     public Admin() {
     }
@@ -45,12 +45,14 @@ public class Admin {
         this.password = password;
     }
 
-    public String getPhoto() {
-        return photo;
+    public String getImage() {
+        return image;
     }
 
-    public void setPhoto(String photo) {
-        this.photo = photo;
+    public void setImage(String image) {
+        this.image = image;
     }
+
+  
     
 }
