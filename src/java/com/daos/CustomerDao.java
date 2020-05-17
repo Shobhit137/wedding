@@ -24,6 +24,7 @@ public class CustomerDao {
         ConnectionPool cp = ConnectionPool.getInstance();
          cp.initialize();
        Connection con = cp.getConnection();
+       System.out.println("Connection is here");
        if(con!=null){
         try{
             String sql = "Select * from customer where user_id=? and password=?";
@@ -32,9 +33,10 @@ public class CustomerDao {
             smt.setString(1, userid);
             smt.setString(2,encodedPassword);
             ResultSet rs = smt.executeQuery();
+             
             if(rs.next()){
                 customer1 = new customer();
-               
+               System.out.println("Connection is Inner here");
                 customer1.setId(rs.getInt("id"));
                 customer1.setName(rs.getString("name"));
                 customer1.setDob(rs.getString("dob"));
@@ -54,7 +56,7 @@ public class CustomerDao {
             System.out.println("DBError :"+e.getMessage());
         }
        }
-        System.out.println("Name is"+customer1.getName());
+       
         return customer1;
         
     }

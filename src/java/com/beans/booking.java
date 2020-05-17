@@ -11,7 +11,7 @@ package com.beans;
  */
 public class booking {
     private int id;
-    private String event_date,event_name,booking_date,status,customer_id,advance_cost,net_amount;
+    private String event_date,event_name,booking_date,status,customer_id,advance_cost,net_amount,city;
 
     public booking() {
     }
@@ -78,6 +78,14 @@ public class booking {
 
     public void setNet_amount(String net_amount) {
         this.net_amount = net_amount;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
     }
     
 }

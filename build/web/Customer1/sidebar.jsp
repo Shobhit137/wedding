@@ -16,7 +16,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                  <a class="nav-link" href="addNews.jsp">
+                  <a class="nav-link" href="bookevent.jsp">
                   <span data-feather="file"></span>
                   Book Event
                 </a>
@@ -30,7 +30,7 @@
               
               
               <li class="nav-item">
-                <a class="nav-link" href="editprofile.jsp">
+                <a class="nav-link" href="editDetails.jsp">
                   <span data-feather="layers"></span>
                   Update Profile
                 </a>

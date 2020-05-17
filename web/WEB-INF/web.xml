@@ -8,6 +8,14 @@
         <servlet-name>CustomerController</servlet-name>
         <servlet-class>com.controller.CustomerController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>process</servlet-name>
+        <servlet-class>com.java.process</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UserData</servlet-name>
+        <servlet-class>com.dropdown.UserData</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>VendorController</servlet-name>
         <url-pattern>/VendorController</url-pattern>
@@ -15,6 +23,14 @@
     <servlet-mapping>
         <servlet-name>CustomerController</servlet-name>
         <url-pattern>/CustomerController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>process</servlet-name>
+        <url-pattern>/process</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UserData</servlet-name>
+        <url-pattern>/UserData</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

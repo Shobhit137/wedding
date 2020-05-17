@@ -21,13 +21,13 @@
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <title>Modern Business - Start Bootstrap Template</title>
+        <title>Welcome</title>
 
         <!-- Bootstrap core CSS -->
-        <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <link href="assets_login/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
         <!-- Custom styles for this template -->
-        <link href="assets/css/modern-business.css" rel="stylesheet">
+        <link href="assets_login/css/modern-business.css" rel="stylesheet">
         <style>
 
             html,body{
@@ -45,7 +45,7 @@
             }
 
             .card{
-                height: 370px;
+                height: 450px;
                 margin-top: auto;
                 margin-bottom: auto;
                 width: 400px;
@@ -114,7 +114,7 @@
             }
 
             .links a{
-                margin-left: 4px;
+                margin-left: 6px;
             }
         </style>
 
@@ -164,13 +164,13 @@
                                 <div class="card-body">
                                     <center>
                                         <form  method="post">
-                                            <div class="input-group form-group">
-                                                <div class="input-group-prepend">
-                                                    <span class="input-group-text"><i class="fas fa-user"></i></span>
-                                                </div>
-                                                <input type="text" class="form-control" placeholder="username" name="userid" required="required"  onfocus="s1.innerHTML = '';" autocomplete="off" value="<%=userid%>">
-
-                                            </div>
+                                           <div class="input-group form-group">
+						<div class="input-group-prepend">
+							<span class="input-group-text"><i class="fas fa-user"></i></span>
+						</div>
+                                            <input type="text" class="form-control" placeholder="username" name="userid" required="required"  onfocus="s1.innerHTML='';" autocomplete="off" value="<%=userid%>">
+						
+					</div>
                                             <div class="input-group form-group">
                                                 <div class="input-group-prepend">
                                                     <span class="input-group-text"><i class="fas fa-key"></i></span>
@@ -220,14 +220,14 @@
         <!-- Bootstrap core JavaScript -->
         <br/>
        
-        <script src="assets/vendor/jquery/jquery.min.js"></script>
-        <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <script src="assets_login/vendor/jquery/jquery.min.js"></script>
+        <script src="assets_login/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
         
         
     </center>
                                                
                                                 
-        <br/><br/><br/><br/><br/><br/><br/><br/>                                        
+        <br/><br/><br/><br/><br/><br/><br/><br/> <br/><br/><br/><br/>                                      
                                                 <jsp:include page="footer.jsp"></jsp:include>
 </body>
 
