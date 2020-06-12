@@ -51,7 +51,7 @@ public final class signup_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("    <head>\n");
       out.write("        <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\n");
       out.write("        <title>Registration Page</title>\n");
-      out.write("        <link rel=\"icon\" href=\"assets/Images/icons8-bookmark-64.png\" sizes=\"16x16\">\n");
+      out.write("       \n");
       out.write("        ");
       org.apache.jasper.runtime.JspRuntimeLibrary.include(request, response, "base.jsp", out, false);
       out.write("\n");

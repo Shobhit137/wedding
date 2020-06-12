@@ -16,6 +16,22 @@
         <servlet-name>UserData</servlet-name>
         <servlet-class>com.dropdown.UserData</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Country</servlet-name>
+        <servlet-class>newpackage.Country</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>BookingController</servlet-name>
+        <servlet-class>com.controller.BookingController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>BookingDao</servlet-name>
+        <servlet-class>com.daos.BookingDao</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Country1</servlet-name>
+        <servlet-class>newpackage.Country1</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>VendorController</servlet-name>
         <url-pattern>/VendorController</url-pattern>
@@ -32,9 +48,27 @@
         <servlet-name>UserData</servlet-name>
         <url-pattern>/UserData</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>BookingController</servlet-name>
+        <url-pattern>/BookingController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>BookingDao</servlet-name>
+        <url-pattern>/BookingDao</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Country</servlet-name>
+        <url-pattern>/Country</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Country1</servlet-name>
+        <url-pattern>/Customer1/Country1</url-pattern>
+    </servlet-mapping>
+    
+    
     <session-config>
         <session-timeout>
-            30
+            0
         </session-timeout>
     </session-config>
 </web-app>

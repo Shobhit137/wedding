@@ -30,14 +30,14 @@ public class UserData extends HttpServlet {
         response.setContentType("text/html");
         
         String op = request.getParameter("op");
-        System.out.println("Control is first in search here");
+      
          if(op!=null && op.equalsIgnoreCase("search"))
         {
-            System.out.println("Control is second in search here");
+            
             Connection con=null;
             PreparedStatement smt=null;
             String city=request.getParameter("s1");
-            System.out.println("Control is third in search here");
+            
             try{
             Class.forName("com.mysql.jdbc.Driver");
             con=DriverManager.getConnection("jdbc:mysql://localhost:3306/wedding","root","123456");

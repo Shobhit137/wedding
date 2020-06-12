@@ -129,7 +129,7 @@ public class VendorController extends HttpServlet {
           {
               session.removeAttribute("vendor");
               
-             response.sendRedirect("../login.jsp");
+             response.sendRedirect("login.jsp");
           }
       }
       if(op!=null && op.equalsIgnoreCase("update"))

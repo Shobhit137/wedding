@@ -90,7 +90,7 @@ public final class login_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("            }\n");
       out.write("\n");
       out.write("            .card{\n");
-      out.write("                height: 370px;\n");
+      out.write("                height: 450px;\n");
       out.write("                margin-top: auto;\n");
       out.write("                margin-bottom: auto;\n");
       out.write("                width: 400px;\n");
@@ -217,15 +217,15 @@ public final class login_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                                <div class=\"card-body\">\n");
       out.write("                                    <center>\n");
       out.write("                                        <form  method=\"post\">\n");
-      out.write("                                            <div class=\"input-group form-group\">\n");
-      out.write("                                                <div class=\"input-group-prepend\">\n");
-      out.write("                                                    <span class=\"input-group-text\"><i class=\"fas fa-user\"></i></span>\n");
-      out.write("                                                </div>\n");
-      out.write("                                                <input type=\"text\" class=\"form-control\" placeholder=\"username\" name=\"userid\" required=\"required\"  onfocus=\"s1.innerHTML = '';\" autocomplete=\"off\" value=\"");
+      out.write("                                           <div class=\"input-group form-group\">\n");
+      out.write("\t\t\t\t\t\t<div class=\"input-group-prepend\">\n");
+      out.write("\t\t\t\t\t\t\t<span class=\"input-group-text\"><i class=\"fas fa-user\"></i></span>\n");
+      out.write("\t\t\t\t\t\t</div>\n");
+      out.write("                                            <input type=\"text\" class=\"form-control\" placeholder=\"username\" name=\"userid\" required=\"required\"  onfocus=\"s1.innerHTML='';\" autocomplete=\"off\" value=\"");
       out.print(userid);
       out.write("\">\n");
-      out.write("\n");
-      out.write("                                            </div>\n");
+      out.write("\t\t\t\t\t\t\n");
+      out.write("\t\t\t\t\t</div>\n");
       out.write("                                            <div class=\"input-group form-group\">\n");
       out.write("                                                <div class=\"input-group-prepend\">\n");
       out.write("                                                    <span class=\"input-group-text\"><i class=\"fas fa-key\"></i></span>\n");
@@ -318,10 +318,10 @@ public final class login_jsp extends org.apache.jasper.runtime.HttpJspBase
             Vendor vendor = vd.validateVendor(userid, password);
             System.out.println("NAme is"+vendor.getName());
             if(vendor!=null) {
-                System.out.println("Connection is heree");
+               // System.out.println("Connection is heree");
                 session.setAttribute("vendor", vendor);
                 response.sendRedirect("Vendor/dashboard.jsp");
-                System.out.println("It has redirected");
+                //System.out.println("It has redirected");
             }
             else {
                  response.sendRedirect("login.jsp?msg=Invalid Userid or Password");
@@ -330,7 +330,7 @@ public final class login_jsp extends org.apache.jasper.runtime.HttpJspBase
       if (role.equals("customerLogin")) {
             CustomerDao cd = new CustomerDao();
             customer customer = cd.validateCustomer(userid, password);
-            System.out.println("Name is"+customer.getName());
+            //System.out.println("Name is"+customer.getName());
             if(customer!=null) {
                 session.setAttribute("customer", customer);
                 response.sendRedirect("Customer1/dashboard.jsp");

@@ -229,6 +229,7 @@ public class VendorDao {
         try{
             String sql = "select * from vendor1 where profession=?";
             PreparedStatement smt = con.prepareStatement(sql);
+            smt.setString(1,cat);
             ResultSet rs= smt.executeQuery();
             while(rs.next()){
                 Vendor  vendors=new Vendor();
@@ -244,6 +245,7 @@ public class VendorDao {
                 vendors.setContact(rs.getString("contact"));
                 vendors.setCity(rs.getString("city"));
                 vendors.setProfession(rs.getString("profession"));
+                vendors.setCost(rs.getInt("cost"));
                 vendor.add(vendors);
             }
             smt.close();

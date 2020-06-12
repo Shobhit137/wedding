@@ -5,10 +5,7 @@
  */
 package com.beans;
 
-/**
- *
- * @author shobh
- */
+
 public class booking {
     private int id;
     private String event_date,event_name,booking_date,status,customer_id,advance_cost,net_amount,city;

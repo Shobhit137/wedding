@@ -7,11 +7,21 @@ package com.beans;
 
 
 public class Vendor {
-    private int id,pincode;
+    private int id,pincode,cost;
     private String city,contact,userid,password,gender,name,email,photo,dob,profession;
 
     public Vendor() {
     }
+
+    public int getCost() {
+        return cost;
+    }
+
+    public void setCost(int cost) {
+        this.cost = cost;
+    }
+
+    
 
     public int getId() {
         return id;

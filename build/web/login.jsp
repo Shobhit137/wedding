@@ -259,10 +259,10 @@
             Vendor vendor = vd.validateVendor(userid, password);
             System.out.println("NAme is"+vendor.getName());
             if(vendor!=null) {
-                System.out.println("Connection is heree");
+               // System.out.println("Connection is heree");
                 session.setAttribute("vendor", vendor);
                 response.sendRedirect("Vendor/dashboard.jsp");
-                System.out.println("It has redirected");
+                //System.out.println("It has redirected");
             }
             else {
                  response.sendRedirect("login.jsp?msg=Invalid Userid or Password");
@@ -271,7 +271,7 @@
       if (role.equals("customerLogin")) {
             CustomerDao cd = new CustomerDao();
             customer customer = cd.validateCustomer(userid, password);
-            System.out.println("Name is"+customer.getName());
+            //System.out.println("Name is"+customer.getName());
             if(customer!=null) {
                 session.setAttribute("customer", customer);
                 response.sendRedirect("Customer1/dashboard.jsp");

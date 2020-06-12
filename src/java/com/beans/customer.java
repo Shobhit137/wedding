@@ -9,9 +9,9 @@ package com.beans;
 public class customer {
     private int id;
     private String name,contact,city,user_id,email,photo,dob,gender,password;
-
+    
     public customer() {
-    }
+}
 
     public int getId() {
         return id;

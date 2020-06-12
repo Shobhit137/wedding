@@ -37,9 +37,11 @@ if(session.getAttribute("customer")==null){
           <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
             <h1 class="h2">Dashboard</h1>
                 <%-- <jsp:include page="reportbar.jsp"></jsp:include>--%>
+                <br/>
+                
 
           </div>
- 
+                <h2 class="h2"><font color="Blue">Bookings Made By You</font></h2>
         </main>
       </div>
     </div>

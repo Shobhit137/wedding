@@ -18,17 +18,17 @@
   <title>Modern Business - Start Bootstrap Template</title>
 
   <!-- Bootstrap core CSS -->
-  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets_login/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
   <!-- Custom styles for this template -->
-  <link href="assets/css/modern-business.css" rel="stylesheet">
+  <link href="assets_login/css/modern-business.css" rel="stylesheet">
 
 </head>
 
 <body>
 
   <!-- Navigation -->
-  <jsp:include page="navbar.jsp"></jsp:include>
+   <jsp:include page="navbar.jsp"></jsp:include>
 
   <header>
     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
@@ -39,21 +39,21 @@
       </ol>
       <div class="carousel-inner" role="listbox">
         <!-- Slide One - Set the background image for this slide in the line below -->
-        <div class="carousel-item active" style="background-image: url('assets/Image/bg_venue1.jpg')">
+        <div class="carousel-item active" style="background-image: url('assets_login/Image/bg_venue1.jpg')">
           <div class="carousel-caption d-none d-md-block">
             <h3>First Slide</h3>
             <p>This is a description for the first slide.</p>
           </div>
         </div>
         <!-- Slide Two - Set the background image for this slide in the line below -->
-        <div class="carousel-item" style="background-image: url('assets/Image/bg_home1.jpg')">
+        <div class="carousel-item" style="background-image: url('assets_login/Image/bg_home1.jpg')">
           <div class="carousel-caption d-none d-md-block">
             <h3>Second Slide</h3>
             <p>This is a description for the second slide.</p>
           </div>
         </div>
         <!-- Slide Three - Set the background image for this slide in the line below -->
-        <div class="carousel-item" style="background-image: url('assets/Image/bg_photos3.jpg')">
+        <div class="carousel-item" style="background-image: url('assets_login/Image/bg_photos3.jpg')">
           <div class="carousel-caption d-none d-md-block">
             <h3>Third Slide</h3>
             <p>This is a description for the third slide.</p>
@@ -228,8 +228,8 @@
   <jsp:include page="footer.jsp"></jsp:include>
 
   <!-- Bootstrap core JavaScript -->
-  <script src="assets/vendor/jquery/jquery.min.js"></script>
-  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets_login/vendor/jquery/jquery.min.js"></script>
+  <script src="assets_login/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 </body>
 

@@ -1,37 +1,45 @@
 <%-- 
     Document   : bookevent
     Created on : 25 Apr, 2020, 8:27:59 PM
-    Author     : shobh
+    Author     : shobh, 
 --%>
 
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.DriverManager"%>
 <%@page import="java.sql.PreparedStatement"%>
 <%@page import="java.sql.Connection"%>
-<%@page import="com.beans.customer"%>
-<%@page import="com.daos.CustomerDao"%>
-<%@page import="com.beans.booking"%>
 
-
-<%@page import="java.util.ArrayList"%>
-
-<%@page contentType="text/html" pageEncoding="UTF-8" import="com.beans.customer"%>
+<%@page contentType="text/html" pageEncoding="UTF-8" import="com.beans.booking"%>
 <!doctype html>
 <html lang="en">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <title>Booking</title>
-        <jsp:useBean class="com.beans.customer" id="customer" scope="session"></jsp:useBean>
+      
         <jsp:include page="base.jsp"></jsp:include>
-            <!-- Custom styles for this template -->
 
-            <script>
-                $(document).ready(function(){
-                $("#s1").change(function(){
-                    $("#td1").load("UserData?op=search&s1="+$(this).val());
-                });
-            });
+            <script type="text/javascript">
+                
+           
+            function check(x,y)
+            {
+               // alert("Hello");
+                //alert(x);
+                y.innerHtml="";
+                ajax=new XMLHttpRequest();
+                ajax.open("GET","Country1?op=check&n="+x,true);
+                ajax.send();
+                    
+                ajax.onreadystatechange=function(){
+                    if(this.readyState==4 && this.status==200)
+                    {
+                        y.innerHTML=this.responseText;
+//                        alert(this.responseText);
+                    }
+                };
+                 
+            }
             </script> 
           </head>
 
@@ -54,51 +62,81 @@
                     </nav>
 
                     <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+                       
                         <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
                         <%-- <jsp:include page="reportbar.jsp"></jsp:include>--%>
-
+                       <jsp:useBean class="com.beans.booking" id="booking" scope="session"></jsp:useBean>
 
                         <div class="container">
                             <div class="row">
                                 <div class="col col-md-10">
-                                 
-
-                    <form method="post" class="form" action="process" name="test">
+                                
+                                
+                    <form method="post"  action="../BookingController?op=add" class="form-control">
                         <table class="table bg-light">
                             <tr><th colspan="2"><h2> <center>Enter  Details!!!</center></h2></th></tr>
                             
-                            
                             <tr>
-                                <td><h5>Select Event</h5></td>
-                                <td><input type="radio" name="event" value="Wedding" ${booking.event_name eq "Wedding" ? "checked" :""}/>Wedding
-                                    <input type="radio" name="event" value="Reception" ${booking.event_name eq "Reception" ? "checked" :""}/>Reception
+                                <td><h5>Enter Booking Title</h5></td>
+                                <td><input type="text" name="event_name" class="form-control" value=""/></td>
                             </tr>
+                           
                             <tr>
                                 <td><h5>Event Date</h5></td>
-                                <td><input type="date" name="date" value="${booking.event_date}" class="form-control"/></td>
+                                <td><input type="date" name="event_date" value="" class="form-control"/></td>
                             </tr>
                             <tr>
-                                <td><h5>Enter City</h5></td>
-                                <td>  <input type="text" name="" value="${booking.city}" class="form-control"/><br/></td>
-                                
+                                <td><h5>Select State</h5></td>
+                                <td> <select id="state_id" class="form-control" name="state_id" onchange="check(state_id.value,city);"> 
+                            <option value="-1">Select State</option>
+
+                        <%
+                                PreparedStatement smt;
+                                Connection con=null;
+                                try{
+                                    Class.forName("com.mysql.jdbc.Driver");
+                                    con=DriverManager.getConnection("jdbc:mysql://localhost:3306/wedding","root","123456");
+                                    String sql="select *from states";
+                                    smt=con.prepareStatement(sql);
+                                    ResultSet rs=smt.executeQuery();
+                                    while(rs.next())
+                                    {
+                                        //out.println(rs);
+                                        %>
+                                        <option value="<%= rs.getInt("id") %>"><%= rs.getString("name") %></option>
+                                        <%}
+                                     con.close();
+                                      smt.close();
+                                }catch(Exception e)
+                                {
+                                    System.out.println("Error"+e.getMessage());
+                                }
+                                %>
+                    </select></td>
+                            </tr>
+                           
+                             <tr>
+                                <td><h5>Select City</h5></td>
+                                <td> <select id="city" name="city" class="form-control" > 
+                            <option value="-1">Select City</option>
+
+                        
+                    </select></td>
                             </tr>
                           
                             <tr>
                                 <td><h5>Enter Advance Amount</h5></td>
-                                <td><input type="number" name="number" value="${booking.advance_cost}" class="form-control"/></td> 
+                                <td><input type="number" name="number" value="" class="form-control"/></td> 
                             </tr>
+                            
                             <tr>
-                                <td><h5>Net Amount</h5></td>
-                                <td><input type="number" name="number" value="12333" class="form-control"/></td> 
-                            </tr>
-                            <tr>
-                                
+                                <td><input type="hidden" name="customer_id" value=""</td>
                                 <td><input type="hidden" name="status" value="false" class="form-control"/></td> 
                             </tr>
                            
                         </table>
                                     
-                        <input type="submit" value="save and next" name="submit" id="submit" class="form-control btn btn-primary"/>
+                    <center> <a href="tanku.jsp" style="font-size: 20px;" class="btn btn-primary">Save And Next</a></center>
                     </form>       
                                 </div>
 
